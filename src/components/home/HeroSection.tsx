@@ -45,7 +45,7 @@ const HeroSection = () => {
           >
             <img
               src={slides[current].image}
-              alt="Rastlina Banner"
+              alt="Plants Wala Banner"
               className="w-full h-full object-cover"
               draggable={false}
             />

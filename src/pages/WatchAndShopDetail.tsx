@@ -205,7 +205,7 @@ const WatchAndShopDetail = () => {
   const handleShare = useCallback(() => {
     const shareData = {
       title: watchItem?.title || product?.name,
-      text: `Watch & Shop: ${watchItem?.title || product?.name} on Rastlina!`,
+      text: `Watch & Shop: ${watchItem?.title || product?.name} on Plants Wala!`,
       url: window.location.href,
     };
     if (navigator.share) {

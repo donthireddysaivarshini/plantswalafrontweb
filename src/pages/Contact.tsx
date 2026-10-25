@@ -114,7 +114,7 @@ export default function Contact() {
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 text-accent-gold" />
-                <span>info.rastlina@gmail.com</span>
+                <span>support@plantswala.com</span>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <MapPin className="h-4 w-4 text-accent-gold" />

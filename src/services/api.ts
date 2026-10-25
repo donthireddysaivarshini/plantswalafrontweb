@@ -28,7 +28,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('rastlinaToken');
+  const token = localStorage.getItem('plantswalaToken') || localStorage.getItem('rastlinaToken');
   if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -43,6 +43,8 @@ api.interceptors.response.use(
         error.config.url.includes('/auth/signup');
 
       if (!isAuthRequest) {
+        localStorage.removeItem('plantswalaToken');
+        localStorage.removeItem('plantswalaUser');
         localStorage.removeItem('rastlinaToken');
         localStorage.removeItem('rastlinaUser');
         if (window.location.pathname !== '/login') {
@@ -59,8 +61,8 @@ export const authService = {
     const res = await api.post('/auth/login/', credentials);
     const token = res.data.access;
     if (token) {
-      localStorage.setItem('rastlinaToken', token);
-      localStorage.setItem('rastlinaUser', JSON.stringify(res.data.user));
+      localStorage.setItem('plantswalaToken', token);
+      localStorage.setItem('plantswalaUser', JSON.stringify(res.data.user));
     }
     return res.data;
   },
@@ -68,9 +70,9 @@ export const authService = {
   googleLogin: async (code: string) => {
     const res = await api.post('/auth/google/', { code, callback_url: 'postmessage' });
     const token = res.data.access || res.data.access_token;
-    if (token) localStorage.setItem('rastlinaToken', token);
+    if (token) localStorage.setItem('plantswalaToken', token);
     const profile = await authService.getProfile();
-    localStorage.setItem('rastlinaUser', JSON.stringify(profile));
+    localStorage.setItem('plantswalaUser', JSON.stringify(profile));
     return { ...res.data, user: profile };
   },
 
@@ -88,19 +90,21 @@ export const authService = {
     const res = await api.patch('/auth/user/', data, {
       headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {},
     });
-    localStorage.setItem('rastlinaUser', JSON.stringify(res.data));
+    localStorage.setItem('plantswalaUser', JSON.stringify(res.data));
     return res.data;
   },
 
   logout: () => {
+    localStorage.removeItem('plantswalaToken');
+    localStorage.removeItem('plantswalaUser');
     localStorage.removeItem('rastlinaToken');
     localStorage.removeItem('rastlinaUser');
   },
 
-  isLoggedIn: () => !!localStorage.getItem('rastlinaToken'),
+  isLoggedIn: () => !!(localStorage.getItem('plantswalaToken') || localStorage.getItem('rastlinaToken')),
 
   getStoredUser: () => {
-    const u = localStorage.getItem('rastlinaUser');
+    const u = localStorage.getItem('plantswalaUser') || localStorage.getItem('rastlinaUser');
     return u ? JSON.parse(u) : null;
   },
 

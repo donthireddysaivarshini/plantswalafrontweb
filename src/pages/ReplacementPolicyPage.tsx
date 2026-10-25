@@ -10,7 +10,7 @@ const ReplacementPolicyPage = () => {
             Replacement & Re-shipment Policy
           </h1>
           <p className="text-gray-600 text-lg leading-relaxed max-w-3xl">
-            At Rastlina, we strive to deliver healthy plants and quality
+            At Plants Wala, we strive to deliver healthy plants and quality
             products. If you receive damaged, incorrect, or incomplete items,
             we are here to help with replacements, reshipments, or refunds
             wherever applicable.
@@ -190,7 +190,7 @@ const ReplacementPolicyPage = () => {
 
             <div className="mt-6 bg-yellow-100 border border-yellow-300 rounded-xl p-4">
               <p className="text-sm text-yellow-900 font-medium">
-                Disclaimer: By placing an order on Rastlina, you agree to our
+                Disclaimer: By placing an order on Plants Wala, you agree to our
                 Return to Origin (RTO) Policy.
               </p>
             </div>
@@ -215,7 +215,7 @@ const ReplacementPolicyPage = () => {
               </li>
 
               <li>
-                All claims are subject to verification by the Rastlina support
+                All claims are subject to verification by the Plants Wala support
                 team.
               </li>
             </ul>
@@ -236,7 +236,7 @@ const ReplacementPolicyPage = () => {
 
           <div className="space-y-2 text-green-50">
             <p>
-              <strong>Email:</strong> info.rastlina@gmail.com
+              <strong>Email:</strong> support@plantswala.com
             </p>
 
             <p>

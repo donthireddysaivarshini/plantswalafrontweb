@@ -98,19 +98,19 @@ const DEFAULT_CONFIG: SiteConfig = {
   tax_percentage: 0,
 };
 
-const CART_KEY = 'rastlina_cart_v2';
-const COUPON_KEY = 'rastlina_coupon_v2';
+const CART_KEY = 'plantswala_cart_v2';
+const COUPON_KEY = 'plantswala_coupon_v2';
 
 function loadCart(): CartItem[] {
   try {
-    const raw = localStorage.getItem(CART_KEY);
+    const raw = localStorage.getItem(CART_KEY) || localStorage.getItem('rastlina_cart_v2');
     return raw ? JSON.parse(raw) : [];
   } catch { return []; }
 }
 
 function loadCoupon(): AppliedCoupon | null {
   try {
-    const raw = localStorage.getItem(COUPON_KEY);
+    const raw = localStorage.getItem(COUPON_KEY) || localStorage.getItem('rastlina_coupon_v2');
     return raw ? JSON.parse(raw) : null;
   } catch { return null; }
 }

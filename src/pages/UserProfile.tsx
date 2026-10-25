@@ -133,7 +133,7 @@ useEffect(() => {
                 Order History
               </h2>
               <p className="text-sm text-gray-400 mt-1">
-                All your Rastlina orders in one place
+                All your Plants Wala orders in one place
               </p>
             </div>
             <OrderHistory

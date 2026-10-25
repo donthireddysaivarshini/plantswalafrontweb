@@ -14,8 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Rubik', 'Georgia', 'serif'],
+        sans: ['Nunito Sans', 'system-ui', 'sans-serif'],
+        heading: ['Rubik', 'sans-serif'],
+        body: ['Nunito Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,18 +53,34 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Extended RASILINA palette
+        // Official Plants Wala Brand Palette (Brand Mini Guidelines V1.0)
+        forest: {
+          DEFAULT: "#1E3A23", // Forest Green (Main)
+          dark: "#142617",
+          light: "#2A5232",
+        },
+        terracotta: {
+          DEFAULT: "#C66C39", // Terracotta (Pot / CTA / Accent)
+          dark: "#AA5627",
+          light: "#D87E4C",
+        },
+        leaf: {
+          DEFAULT: "#78BC42", // Fresh Leaf (Growth / Badges)
+          dark: "#5E9830",
+          light: "#8FD556",
+        },
+        cream: {
+          DEFAULT: "#FDFBF7", // White & Cream (25% background)
+          dark: "#F4EFE6",
+        },
         "accent-earth": {
-          DEFAULT: "hsl(var(--accent-earth))",
-          foreground: "hsl(var(--accent-earth-foreground))",
+          DEFAULT: "#C66C39",
+          foreground: "#ffffff",
         },
         "accent-gold": {
-          DEFAULT: "hsl(var(--accent-gold))",
-          foreground: "hsl(var(--accent-gold-foreground))",
+          DEFAULT: "#C66C39",
+          foreground: "#ffffff",
         },
-        terracotta: "hsl(var(--terracotta))",
-        "sage-light": "hsl(var(--sage-light))",
-        cream: "hsl(var(--cream))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

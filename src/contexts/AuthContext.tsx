@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const profile = await authService.getProfile();
       setUser(profile);
-      localStorage.setItem('rastlinaUser', JSON.stringify(profile));
+      localStorage.setItem('plantswalaUser', JSON.stringify(profile));
     } catch {
       // token invalid
       logout();

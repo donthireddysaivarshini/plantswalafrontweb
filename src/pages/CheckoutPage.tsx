@@ -302,7 +302,7 @@ applyCoupon({
         key: res.key,
         amount: res.amount,
         currency: res.currency ?? 'INR',
-        name: 'Rastlina',
+        name: 'Plants Wala',
         description: 'Plants & Planters',
         order_id: res.razorpay_order_id,
         handler: async (response: any) => {

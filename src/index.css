@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300..900;1,6..12,300..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,31 +6,34 @@
 
 @layer base {
   :root {
-    /* RASILINA Design System */
+    /* PLANTS WALA Design System (Brand Mini Guidelines V1.0) */
     
-    /* Variables hold just the HSL values */
-    --primary: 60 100% 6%;        /* #677d00 (Sage Green) */
+    /* Main / Forest Green: #1E3A23 (Wordmark, text, dark backgrounds) */
+    --primary: 131 32% 17%;
     --primary-foreground: 0 0% 100%;
     
-    --accent-earth: 33 43% 31%;      /* #73592f (Warm Earth) */
+    /* Pot / Terracotta: #C66C39 (Accents, highlights, CTAs) */
+    --accent-earth: 22 55% 50%;
     --accent-earth-foreground: 0 0% 100%;
+    --terracotta: 22 55% 50%;
     
-    --accent-gold: 41 38% 60%;        /* #bFA275 (Soft Gold) */
+    /* Leaf / Fresh Leaf: #78BC42 (Leaves, growth cues, badges) */
+    --leaf: 93 48% 50%;
+    --accent-gold: 22 55% 50%;
     --accent-gold-foreground: 0 0% 100%;
     
-    --background: 40 20% 96%;
-    --foreground: 71 100% 15%;
+    /* 25% White & Cream background */
+    --background: 40 40% 98%;
+    --foreground: 131 32% 17%;
     
     --card: 0 0% 100%;
-    --card-foreground: 71 100% 15%;
+    --card-foreground: 131 32% 17%;
     
-    --border: 41 38% 85%;
-    --input: 41 38% 85%;
-    --ring: 60 100% 6%;
+    --border: 40 20% 88%;
+    --input: 40 20% 88%;
+    --ring: 131 32% 17%;
     --radius: 0.5rem;
-    
   }
-  
 }
 
 @layer base {
@@ -39,30 +42,41 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Rubik', sans-serif;
     @apply font-semibold tracking-tight;
   }
-  
 }
 
 /* Explicit Color Utilities to fix visibility issues */
 @layer utilities {
-  .bg-primary { background-color: hsl(var(--primary)); }
-  .text-primary { color: hsl(var(--primary)); }
-  .border-primary { border-color: hsl(var(--primary)); }
+  .bg-primary { background-color: #1E3A23; }
+  .text-primary { color: #1E3A23; }
+  .border-primary { border-color: #1E3A23; }
   
-  .bg-accent-earth { background-color: hsl(var(--accent-earth)); }
-  .text-accent-earth { color: hsl(var(--accent-earth)); }
-  .border-accent-earth { border-color: hsl(var(--accent-earth)); }
+  .bg-accent-earth { background-color: #C66C39; }
+  .text-accent-earth { color: #C66C39; }
+  .border-accent-earth { border-color: #C66C39; }
   
-  .bg-accent-gold { background-color: hsl(var(--accent-gold)); }
-  .text-accent-gold { color: hsl(var(--accent-gold)); }
-  .border-accent-gold { border-color: hsl(var(--accent-gold)); }
+  .bg-accent-gold { background-color: #C66C39; }
+  .text-accent-gold { color: #C66C39; }
+  .border-accent-gold { border-color: #C66C39; }
 
-  .bg-secondary-custom { background-color: hsl(41 38% 95%); } /* Very light gold tint */
+  .bg-leaf { background-color: #78BC42; }
+  .text-leaf { color: #78BC42; }
+  .border-leaf { border-color: #78BC42; }
+
+  .bg-terracotta { background-color: #C66C39; }
+  .text-terracotta { color: #C66C39; }
+  .border-terracotta { border-color: #C66C39; }
+
+  .bg-forest { background-color: #1E3A23; }
+  .text-forest { color: #1E3A23; }
+  .border-forest { border-color: #1E3A23; }
+
+  .bg-secondary-custom { background-color: #FDFBF7; }
   
   .no-scrollbar::-webkit-scrollbar {
     display: none;

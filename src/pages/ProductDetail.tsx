@@ -312,7 +312,7 @@ const ProductDetail = () => {
     if (navigator.share) {
       navigator.share({
         title: product?.name,
-        text: `Check out ${product?.name} on Rastlina!`,
+        text: `Check out ${product?.name} on Plants Wala!`,
         url: window.location.href,
       }).catch(() => {});
     } else {

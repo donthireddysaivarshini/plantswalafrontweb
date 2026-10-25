@@ -89,7 +89,7 @@ const TopBar = () => {
   }, [offers]);
 
   return (
-    <div className="bg-[#1A3831] text-white py-2.5 flex items-center justify-center h-[38px] overflow-hidden">
+    <div className="bg-forest text-white py-2.5 flex items-center justify-center h-[38px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.p
           key={idx}
@@ -163,7 +163,7 @@ const PlantsMegaMenu = ({
               <Link 
                 to={currentSlide?.link_url || '/shop?main_category=plants'} 
                 onClick={closeMenu} 
-                className="rounded-xl overflow-hidden h-28 relative group cursor-pointer block shadow-sm bg-[#1A3831]"
+                className="rounded-xl overflow-hidden h-28 relative group cursor-pointer block shadow-sm bg-forest"
               >
                 <AnimatePresence mode="sync">
                   {currentSlide && (
@@ -186,7 +186,7 @@ const PlantsMegaMenu = ({
                         {currentSlide.subtitle}
                       </p>
                     )}
-                    <span className="text-white font-serif font-bold text-xl">
+                    <span className="text-white font-heading font-bold text-xl">
                       {currentSlide?.title || 'Shop All Plants'}
                     </span>
                   </div>
@@ -195,17 +195,16 @@ const PlantsMegaMenu = ({
 
               {/* Top Picks - Shop by Size */}
               <div>
-                <h3 className="font-serif font-bold text-2xl text-[#1A3831] mb-4">Shop by Size</h3>
+                <h3 className="font-heading font-bold text-2xl text-forest mb-4">Shop by Size</h3>
                 <div className="space-y-3">
-                  {sizes.map((size, index) => (
+                  {sizes.map((size) => (
                     <Link 
                       key={size.id} 
                       to={`/shop?main_category=plants&size=${size.name}`} 
                       onClick={closeMenu}
-                      className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-gray-50 transition-colors group border border-transparent hover:border-gray-100"
+                      className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-[#FDFBF7] transition-colors group border border-transparent hover:border-gray-100"
                     >
-                     
-                      <span className="font-bold text-gray-800 group-hover:text-[#667D00] transition-colors text-base">
+                      <span className="font-bold text-gray-800 group-hover:text-leaf transition-colors text-base">
                         {size.name} Plants
                       </span>
                     </Link>
@@ -213,10 +212,9 @@ const PlantsMegaMenu = ({
                   <Link 
                     to="/shop?main_category=plants" 
                     onClick={closeMenu}
-                    className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-gray-50 transition-colors group border border-transparent hover:border-gray-100"
+                    className="flex items-center gap-4 p-2.5 rounded-xl hover:bg-[#FDFBF7] transition-colors group border border-transparent hover:border-gray-100"
                   >
-                    
-                    <span className="font-bold text-gray-800 group-hover:text-[#667D00] transition-colors text-base">
+                    <span className="font-bold text-gray-800 group-hover:text-leaf transition-colors text-base">
                       All Plants
                     </span>
                   </Link>
@@ -226,17 +224,17 @@ const PlantsMegaMenu = ({
 
             {/* MIDDLE: Shop by Type (col-span-4) */}
             <div className="col-span-4 border-l border-gray-100 pl-8">
-              <h3 className="font-serif font-bold text-2xl text-[#1A3831] mb-6">Shop by Type</h3>
+              <h3 className="font-heading font-bold text-2xl text-forest mb-6">Shop by Type</h3>
               <ul className="space-y-2">
                 {categories.map((cat) => (
                   <li key={cat.id}>
                     <Link 
                       to={`/shop?category=${cat.slug}`} 
                       onClick={closeMenu}
-                      className="flex items-center justify-between py-2.5 text-gray-600 hover:text-[#667D00] group border-b border-transparent hover:border-gray-50 transition-all"
+                      className="flex items-center justify-between py-2.5 text-gray-700 hover:text-leaf group border-b border-transparent hover:border-gray-50 transition-all"
                     >
                       <span className="font-semibold text-[15px]">{cat.name}</span>
-                      <ChevronRight className="h-4 w-4 text-[#667D00] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"/>
+                      <ChevronRight className="h-4 w-4 text-leaf opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"/>
                     </Link>
                   </li>
                 ))}
@@ -245,17 +243,17 @@ const PlantsMegaMenu = ({
 
             {/* RIGHT: Shop by Space (col-span-3) */}
             <div className="col-span-3 pl-4">
-              <h3 className="font-serif font-bold text-2xl text-[#1A3831] mb-6">Shop by Space</h3>
+              <h3 className="font-heading font-bold text-2xl text-forest mb-6">Shop by Space</h3>
               <ul className="space-y-2">
                 {spaces.map((space) => (
                   <li key={space.id}>
                     <Link 
                       to={`/shop?space=${space.slug}`} 
                       onClick={closeMenu}
-                      className="flex items-center justify-between py-2.5 text-gray-600 hover:text-[#667D00] group border-b border-transparent hover:border-gray-50 transition-all"
+                      className="flex items-center justify-between py-2.5 text-gray-700 hover:text-leaf group border-b border-transparent hover:border-gray-50 transition-all"
                     >
                       <span className="font-semibold text-[15px]">{space.name}</span>
-                      <ChevronRight className="h-4 w-4 text-[#667D00] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"/>
+                      <ChevronRight className="h-4 w-4 text-leaf opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"/>
                     </Link>
                   </li>
                 ))}
@@ -413,21 +411,21 @@ const extraNavItems = [
 
           {/* ── MOBILE ── */}
           <div className="lg:hidden h-[70px] flex items-center justify-between">
-            <button className="p-2 -ml-2 text-[#1A3831]" onClick={() => { setMobileOpen(!mobileOpen); setMobileSearchOpen(false); }}>
+            <button className="p-2 -ml-2 text-forest" onClick={() => { setMobileOpen(!mobileOpen); setMobileSearchOpen(false); }}>
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-              <img src="/logo.png" alt="Rastlina" className="h-10 w-auto object-contain"
+              <img src="/logo.png" alt="Plants Wala" className="h-10 w-auto object-contain"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
             <div className="flex items-center gap-1">
               <button className="p-2 text-gray-800" onClick={() => { setMobileSearchOpen(!mobileSearchOpen); setMobileOpen(false); }}>
                 <Search className="h-5 w-5" />
               </button>
-              <button className="relative p-2 text-[#1A3831]" onClick={openCart}>
+              <button className="relative p-2 text-forest" onClick={openCart}>
                 <ShoppingBag className="h-6 w-6 stroke-[1.5]" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-[#FACC15] text-black text-[10px] font-extrabold rounded-full h-4.5 w-4.5 min-w-[18px] h-[18px] flex items-center justify-center shadow-sm px-0.5">
+                  <span className="absolute -top-0.5 -right-0.5 bg-terracotta text-white text-[10px] font-extrabold rounded-full h-4.5 w-4.5 min-w-[18px] h-[18px] flex items-center justify-center shadow-sm px-0.5">
                     {totalItems}
                   </span>
                 )}
@@ -438,7 +436,7 @@ const extraNavItems = [
           {/* ── DESKTOP ── */}
           <div className="hidden lg:flex items-center h-[72px] gap-6">
             <Link to="/" className="flex-shrink-0">
-              <img src="/logo.png" alt="Rastlina" className="h-14 w-auto object-contain"
+              <img src="/logo.png" alt="Plants Wala" className="h-14 w-auto object-contain"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
 
@@ -449,10 +447,10 @@ const extraNavItems = [
       <button
         onClick={() => setActiveDropdown(activeDropdown === 'plants' ? null : 'plants')}
         className={`flex items-center gap-1.5 text-sm font-medium px-3 py-2 rounded-lg transition-all ${
-          activeDropdown === 'plants' ? 'bg-green-50 text-[#667D00]' : 'text-gray-900 hover:text-[#667D00] hover:bg-green-50'
+          activeDropdown === 'plants' ? 'bg-[#FDFBF7] text-leaf' : 'text-gray-900 hover:text-leaf hover:bg-[#FDFBF7]'
         }`}
       >
-        <Leaf className="h-4 w-4 text-[#667D00]" fill="currentColor" />
+        <Leaf className="h-4 w-4 text-leaf" fill="currentColor" />
         {plantsCat.name}
         <ChevronDown className={`h-3 w-3 opacity-50 transition-transform ${activeDropdown === 'plants' ? 'rotate-180' : ''}`} />
       </button>
@@ -477,7 +475,7 @@ const extraNavItems = [
                 <div key={cat.id} className="relative h-full flex items-center">
                   <button
                     onClick={() => setActiveDropdown(activeDropdown === cat.slug ? null : cat.slug)}
-                    className="flex items-center gap-1 text-sm font-medium text-gray-900 hover:text-[#667D00] px-3 py-2 rounded-lg hover:bg-green-50 transition-all"
+                    className="flex items-center gap-1 text-sm font-medium text-gray-900 hover:text-leaf px-3 py-2 rounded-lg hover:bg-[#FDFBF7] transition-all"
                   >
                     {cat.name}
                     {cat.categories.length > 0 && (
@@ -500,8 +498,8 @@ const extraNavItems = [
                   onClick={() => setActiveDropdown(null)}
                   className={`flex items-center gap-1.5 text-sm px-3 py-2 rounded-lg transition-all ${
                     item.highlight
-                      ? 'font-bold text-[#BFA275] hover:bg-amber-50'
-                      : 'font-medium text-gray-900 hover:text-[#667D00] hover:bg-green-50'
+                      ? 'font-bold text-terracotta hover:bg-[#FDFBF7]'
+                      : 'font-medium text-gray-900 hover:text-leaf hover:bg-[#FDFBF7]'
                   }`}
                 >
                   {item.icon}{item.label}
@@ -517,24 +515,24 @@ const extraNavItems = [
                   placeholder="Search plants..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  className="w-full pl-4 pr-9 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-[#667D00] focus:ring-1 focus:ring-[#667D00] bg-gray-50"
+                  className="w-full pl-4 pr-9 py-2 rounded-full border border-gray-200 text-sm focus:outline-none focus:border-leaf focus:ring-1 focus:ring-leaf bg-gray-50"
                 />
-                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#667D00]">
+                <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-leaf">
                   <Search className="h-4 w-4" />
                 </button>
               </form>
 
-              <Link to={user ? '/profile' : '/login'} className="p-2 text-gray-800 hover:text-[#667D00] transition-colors relative">
+              <Link to={user ? '/profile' : '/login'} className="p-2 text-gray-800 hover:text-leaf transition-colors relative">
                 <User className="h-6 w-6" />
                 {user && (
-                  <span className="absolute bottom-0.5 right-0.5 w-2 h-2 bg-[#667D00] rounded-full border-2 border-white" />
+                  <span className="absolute bottom-0.5 right-0.5 w-2 h-2 bg-leaf rounded-full border-2 border-white" />
                 )}
               </Link>
 
-              <button className="relative p-2 text-[#1A3831]" onClick={openCart}>
+              <button className="relative p-2 text-forest" onClick={openCart}>
                 <ShoppingBag className="h-7 w-7 stroke-[1.5]" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-[#FACC15] text-black text-[10px] font-extrabold rounded-full min-w-[20px] h-5 flex items-center justify-center shadow-sm px-1">
+                  <span className="absolute -top-0.5 -right-0.5 bg-terracotta text-white text-[10px] font-extrabold rounded-full min-w-[20px] h-5 flex items-center justify-center shadow-sm px-1">
                     {totalItems}
                   </span>
                 )}

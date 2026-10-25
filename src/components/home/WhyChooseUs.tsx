@@ -6,7 +6,7 @@ const WhyChooseUs = () => {
     <section className="py-16 bg-white border-t border-gray-100">
       <div className="container-custom">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif text-primary">Why Choose Rastlina?</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-forest">Why Choose Plants Wala?</h2>
         </div>
 
         <div className="w-full max-w-5xl mx-auto mb-12 rounded-2xl overflow-hidden shadow-xl aspect-[21/9] relative bg-black/5">

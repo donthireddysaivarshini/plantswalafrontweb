@@ -58,33 +58,58 @@ const EMPTY: HomeData = {
   featured_reviews: [],
 };
 
+let cachedData: HomeData | null = null;
+let pendingPromise: Promise<HomeData> | null = null;
+let lastFetchTime = 0;
+const CACHE_TTL = 30000; // 30 seconds
+
+function fetchSharedHomeData(): Promise<HomeData> {
+  const now = Date.now();
+  if (cachedData && (now - lastFetchTime < CACHE_TTL)) {
+    return Promise.resolve(cachedData);
+  }
+  if (!pendingPromise) {
+    pendingPromise = storeService
+      .getHomeData()
+      .then((res: HomeData) => {
+        const formatted: HomeData = {
+          hero_slides: res.hero_slides ?? [],
+          new_arrivals: (res.new_arrivals ?? []).slice(0, 8),
+          best_sellers: (res.best_sellers ?? []).slice(0, 8),
+          trending: (res.trending ?? []).slice(0, 8),
+          best_deals: (res.best_deals ?? []).slice(0, 8),
+          featured_categories: res.featured_categories ?? [],
+          featured_spaces: res.featured_spaces ?? [],
+          featured_reviews: res.featured_reviews ?? [],
+        };
+        cachedData = formatted;
+        lastFetchTime = Date.now();
+        return formatted;
+      })
+      .finally(() => {
+        pendingPromise = null;
+      });
+  }
+  return pendingPromise;
+}
+
 export function useHomeData() {
-  const [data, setData] = useState<HomeData>(EMPTY);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<HomeData>(cachedData || EMPTY);
+  const [loading, setLoading] = useState(!cachedData);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    setLoading(true);
 
-    storeService
-      .getHomeData()
-      .then((res: HomeData) => {
+    fetchSharedHomeData()
+      .then((res) => {
         if (!cancelled) {
-          setData({
-            hero_slides: res.hero_slides ?? [],
-            new_arrivals: (res.new_arrivals ?? []).slice(0, 8),
-            best_sellers: (res.best_sellers ?? []).slice(0, 8),
-            trending: (res.trending ?? []).slice(0, 8),
-            best_deals: (res.best_deals ?? []).slice(0, 8),
-            featured_categories: res.featured_categories ?? [],
-            featured_spaces: res.featured_spaces ?? [],
-            featured_reviews: res.featured_reviews ?? [],
-          });
+          setData(res);
+          setError(false);
         }
       })
       .catch(() => {
-        if (!cancelled) setError(true);
+        if (!cancelled && !cachedData) setError(true);
       })
       .finally(() => {
         if (!cancelled) setLoading(false);

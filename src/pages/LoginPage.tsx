@@ -59,7 +59,7 @@ const from =
           phone: formData.phone,
         });
         await login(formData.email, formData.password);
-        toast.success('Welcome to Rastlina! 🌱');
+        toast.success('Welcome to Plants Wala! 🌱');
         navigate(from, { replace: true });
       }
     } catch (err: any) {
@@ -93,9 +93,9 @@ const from =
             <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur flex items-center justify-center">
               <Leaf className="w-5 h-5 text-emerald-300" />
             </div>
-            <span className="text-white font-bold text-xl tracking-wide">Rastlina</span>
+            <span className="text-white font-bold text-xl tracking-wide">Plants Wala</span>
           </div>
-          <p className="text-emerald-200/60 text-sm">Plants & Nature, Delivered</p>
+          <p className="text-emerald-200/80 text-sm">We Bring Green to You, With a Smile</p>
         </div>
 
         <div className="relative z-10 space-y-6">
@@ -117,27 +117,27 @@ const from =
               </span>
             ))}
           </div>
-          <p className="text-emerald-200/40 text-xs mt-3">Bringing nature indoors since 2024</p>
+          <p className="text-emerald-200/40 text-xs mt-3">Fresh from the nursery since 2026</p>
         </div>
       </div>
 
       {/* Right — form panel */}
       <div
         className="flex-1 flex items-center justify-center px-6 py-12 lg:pt-32" 
-        style={{ background: '#faf9f6' }}
+        style={{ background: '#FDFBF7' }}
       >
         <div className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="flex items-center gap-2 mb-8 lg:hidden">
-            <div className="w-8 h-8 rounded-lg bg-emerald-800 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-forest flex items-center justify-center">
               <Leaf className="w-4 h-4 text-emerald-200" />
             </div>
-            <span className="font-bold text-emerald-900 text-lg">Rastlina</span>
+            <span className="font-bold text-forest text-lg">Plants Wala</span>
           </div>
 
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-stone-800 mb-2">
-              {isLogin ? 'Welcome back' : 'Join Rastlina'}
+              {isLogin ? 'Welcome back' : 'Join Plants Wala'}
             </h1>
             <p className="text-stone-500 text-sm">
               {isLogin

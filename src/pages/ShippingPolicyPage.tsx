@@ -7,11 +7,11 @@ const ShippingPolicyPage = () => {
   return (
     <>
       <Helmet>
-        <title>Shipping Policy | Rastlina</title>
+        <title>Shipping Policy | Plants Wala</title>
 
         <meta
           name="description"
-          content="Read Rastlina's shipping policy including order processing, delivery timelines, packaging standards, and shipping guidelines."
+          content="Read Plants Wala's shipping policy including order processing, delivery timelines, packaging standards, and shipping guidelines."
         />
       </Helmet>
 
@@ -29,7 +29,7 @@ const ShippingPolicyPage = () => {
             </h1>
 
             <p className="text-muted-foreground leading-8 text-base md:text-lg">
-              At Rastlina, we ensure your plants are carefully processed,
+              At Plants Wala, we ensure your plants are carefully processed,
               packaged, and delivered safely to your doorstep.
             </p>
           </div>
@@ -46,14 +46,14 @@ const ShippingPolicyPage = () => {
 
             <div className="space-y-5 text-muted-foreground leading-8">
               <p>
-                At Rastlina.com, we ensure that every order is shipped within
+                At PlantsWala.com, we ensure that every order is shipped within
                 <strong> 3 days </strong>
                 of the order date.
               </p>
 
               <p>
                 Confirmation and updates are communicated via email at{" "}
-                <strong>info.rastlina@gmail.com</strong> and through WhatsApp.
+                <strong>support@plantswala.com</strong> and through WhatsApp.
               </p>
 
               <p>
@@ -144,7 +144,7 @@ const ShippingPolicyPage = () => {
               </p>
 
               <p>
-                Rastlina will not be responsible for delivery issues, delays, or
+                Plants Wala will not be responsible for delivery issues, delays, or
                 returns caused due to incorrect address details.
               </p>
 
@@ -172,7 +172,7 @@ const ShippingPolicyPage = () => {
               </p>
 
               <p>
-                <strong>Email:</strong> info.rastlina@gmail.com
+                <strong>Email:</strong> support@plantswala.com
               </p>
             </div>
           </section>

@@ -50,11 +50,11 @@ const ReturnsRefundPolicyPage = () => {
   return (
     <>
       <Helmet>
-        <title>Returns & Refund Policy | Rastlina</title>
+        <title>Returns & Refund Policy | Plants Wala</title>
 
         <meta
           name="description"
-          content="Read Rastlina's cancellation, refund, replacement, reshipment, and Return to Origin (RTO) policies."
+          content="Read Plants Wala's cancellation, refund, replacement, reshipment, and Return to Origin (RTO) policies."
         />
       </Helmet>
 
@@ -74,7 +74,7 @@ const ReturnsRefundPolicyPage = () => {
             <p className="text-muted-foreground leading-8 text-base md:text-lg">
               Please review our cancellation, refund, replacement, and
               reshipment policies carefully before placing an order with
-              Rastlina.
+              Plants Wala.
             </p>
           </div>
 

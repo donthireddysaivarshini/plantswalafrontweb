@@ -1,6 +1,6 @@
 const WhatsAppButton = () => {
-  const phoneNumber = "919915473575"; 
-  const message = "Hi Rastlina! I'm interested in your plants.";
+  const phoneNumber = "918143814466"; 
+  const message = "Hi Plants Wala! I'm interested in your plants.";
   
   return (
     <a 

@@ -28,8 +28,8 @@ export const WhyChooseUs = () => {
     <section className="py-16 bg-white">
       <div className="container-custom">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-serif font-extrabold text-gray-900">
-            Why Choose Rastlina?
+          <h2 className="text-3xl font-heading font-bold text-forest">
+            Why Choose Plants Wala?
           </h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">

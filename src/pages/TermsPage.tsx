@@ -101,7 +101,7 @@ const sections = [
   {
     title: "SECTION 14 - INDEMNIFICATION",
     content: [
-      "You agree to indemnify Rastlina.com and all associated parties against claims arising from your breach of these Terms.",
+      "You agree to indemnify PlantsWala.com and all associated parties against claims arising from your breach of these Terms.",
     ],
   },
   {
@@ -142,11 +142,11 @@ const TermsPage = () => {
   return (
     <>
       <Helmet>
-        <title>Terms & Conditions | Rastlina</title>
+        <title>Terms & Conditions | Plants Wala</title>
 
         <meta
           name="description"
-          content="Read the Terms & Conditions for using Rastlina.com and purchasing products through our platform."
+          content="Read the Terms & Conditions for using PlantsWala.com and purchasing products through our platform."
         />
       </Helmet>
 
@@ -165,7 +165,7 @@ const TermsPage = () => {
 
             <p className="text-muted-foreground leading-8 text-base md:text-lg">
               Please read these Terms & Conditions carefully before accessing or
-              using the Rastlina website and services.
+              using the Plants Wala website and services.
             </p>
           </div>
 
@@ -177,8 +177,8 @@ const TermsPage = () => {
 
             <div className="space-y-5 text-muted-foreground leading-8">
               <p>
-                This website is operated by Rastlina.com. Throughout the site,
-                the terms “we”, “us”, and “our” refer to Rastlina.com.
+                This website is operated by PlantsWala.com. Throughout the site,
+                the terms “we”, “us”, and “our” refer to PlantsWala.com.
               </p>
 
               <p>

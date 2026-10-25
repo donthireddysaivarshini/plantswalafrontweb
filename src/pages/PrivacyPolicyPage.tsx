@@ -6,10 +6,10 @@ const PrivacyPolicyPage = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | Rastlina</title>
+        <title>Privacy Policy | Plants Wala</title>
         <meta
           name="description"
-          content="Read the Privacy Policy of Rastlina regarding data collection, cookies, GDPR rights, CCPA rights, and user privacy."
+          content="Read the Privacy Policy of Plants Wala regarding data collection, cookies, GDPR rights, CCPA rights, and user privacy."
         />
       </Helmet>
 
@@ -27,7 +27,7 @@ const PrivacyPolicyPage = () => {
             </h1>
 
             <p className="text-muted-foreground leading-7 text-base md:text-lg">
-              At Rastlina, we value your privacy and are committed to protecting
+              At Plants Wala, we value your privacy and are committed to protecting
               your personal information and ensuring transparency in how data is collected and used.
             </p>
           </div>
@@ -38,7 +38,7 @@ const PrivacyPolicyPage = () => {
             {/* Intro */}
             <section className="space-y-5">
               <p>
-                At Rastlina, accessible from www.rastlina.com, we prioritize your
+                At Plants Wala, accessible from www.plantswala.com, we prioritize your
                 privacy and strive to keep your information secure.
               </p>
 
@@ -55,7 +55,7 @@ const PrivacyPolicyPage = () => {
               <p>
                 Our Privacy Policy is strictly for our online activities,
                 applying to visitors who share or provide their data at
-                Rastlina. This policy doesn't cover information collected
+                Plants Wala. This policy doesn't cover information collected
                 offline or through non-website channels.
               </p>
             </section>
@@ -134,7 +134,7 @@ const PrivacyPolicyPage = () => {
               </h2>
 
               <p>
-                Rastlina uses log files to efficiently log visitors. This data
+                Plants Wala uses log files to efficiently log visitors. This data
                 includes IP addresses, browser type, Internet Service Provider
                 (ISP), date and time stamps, referring/exit pages, and click
                 counts, aiding trend analysis and website administration
@@ -149,7 +149,7 @@ const PrivacyPolicyPage = () => {
               </h2>
 
               <p>
-                Rastlina uses 'cookies' to store visitor preferences and track
+                Plants Wala uses 'cookies' to store visitor preferences and track
                 accessed pages, optimizing user experience through customized
                 web content based on browsing behaviour and preferences.
               </p>
@@ -173,7 +173,7 @@ const PrivacyPolicyPage = () => {
                 </p>
 
                 <p>
-                  Note that Rastlina has no control over cookies used by
+                  Note that Plants Wala has no control over cookies used by
                   third-party advertisers.
                 </p>
               </div>
@@ -187,7 +187,7 @@ const PrivacyPolicyPage = () => {
 
               <div className="space-y-4">
                 <p>
-                  Rastlina's Privacy Policy doesn't cover external advertisers
+                  Plants Wala's Privacy Policy doesn't cover external advertisers
                   or websites.
                 </p>
 
@@ -288,7 +288,7 @@ const PrivacyPolicyPage = () => {
                 </p>
 
                 <p>
-                  Rastlina doesn't knowingly collect personal information from
+                  Plants Wala doesn't knowingly collect personal information from
                   children under 13. If such data is detected, contact us to
                   ensure its prompt deletion.
                 </p>
