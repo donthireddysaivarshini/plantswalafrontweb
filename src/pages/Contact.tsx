@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Gift, Briefcase, Users, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { submitContactForm } from '@/services/api'; 
 import { toast } from 'sonner';
 
 import heroImage from '@/assets/hero-living-room.jpg'; 
@@ -26,31 +25,50 @@ export default function Contact() {
     setFormData({ ...formData, type: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.email.trim() || !formData.type) {
+      toast.error("Please fill in all required fields (Name, Phone, Email, and Inquiry Type).");
+      return;
+    }
+
     setLoading(true);
 
+    const whatsappNumber = "918143814466";
+
+    const lines = [
+      "🌿 *New Inquiry — Plants Wala*",
+      "────────────────────────",
+      `👤 *Name:* ${formData.name.trim()}`,
+      `📱 *Phone:* ${formData.phone.trim()}`,
+      `📧 *Email:* ${formData.email.trim()}`,
+      `🏷️ *Inquiry Type:* ${formData.type}`,
+      `📦 *Est. Quantity:* ${formData.quantity.trim() || 'Not specified'}`,
+      "💬 *Message / Requirements:*",
+      formData.message.trim() || "None provided",
+      "────────────────────────",
+      "Sent via plantswala.com"
+    ];
+
+    const encodedText = encodeURIComponent(lines.join("\n"));
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+    toast.success("Opening WhatsApp! Please tap 'Send' in WhatsApp to send your inquiry directly to our team.", {
+      duration: 6000,
+    });
+
     try {
-      // 1. Send data to the Django Backend
-      await submitContactForm({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        issue_type: formData.type || 'Bulk Inquiry',
-        message: `Est. Quantity: ${formData.quantity || 'N/A'}\n\nMessage: ${formData.message}`
-      });
-
-      // 2. Success Feedback
-      toast.success("Thank you! Your inquiry has been sent to our team.");
-
-      // 3. Reset form
-      setFormData({ name: '', phone: '', email: '', type: '', quantity: '', message: '' });
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("We couldn't send your request. Please check your connection.");
-    } finally {
-      setLoading(false);
+      const opened = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+        window.location.href = whatsappUrl;
+      }
+    } catch {
+      window.location.href = whatsappUrl;
     }
+
+    setFormData({ name: '', phone: '', email: '', type: '', quantity: '', message: '' });
+    setLoading(false);
   };
 
   return (
@@ -110,15 +128,15 @@ export default function Contact() {
             <div className="space-y-4 pt-12 border-t border-white/20 mt-12">
               <div className="flex items-center gap-3 text-sm">
                 <Phone className="h-4 w-4 text-accent-gold" />
-                <span>+91 8143814466 </span>
+                <a href="tel:+918897021560" className="hover:underline">+91 8897021560</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="h-4 w-4 text-accent-gold" />
-                <span>support@plantswala.com</span>
+                <a href="mailto:plantswala8@gmail.com" className="hover:underline">plantswala8@gmail.com</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
-                <MapPin className="h-4 w-4 text-accent-gold" />
-                <span>Lake View Towers, Hyderabad</span>
+                <MapPin className="h-4 w-4 text-accent-gold shrink-0" />
+                <span>46-16-32, Plants wala store, Opp to spark saloon, Danavaipeta, Rajahmundry - 533103</span>
               </div>
             </div>
           </div>
@@ -234,17 +252,17 @@ export default function Contact() {
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending Inquiry...
+                    Preparing WhatsApp...
                   </>
                 ) : (
                   <>
-                    Submit Inquiry <Send className="ml-2 h-4 w-4" />
+                    Submit via WhatsApp <Send className="ml-2 h-4 w-4" />
                   </>
                 )}
               </Button>
 
-              <p className="text-[10px] text-gray-400 mt-4 text-center md:text-left">
-                We respect your privacy. Your details are safe with us.
+              <p className="text-xs text-gray-500 mt-4 text-center md:text-left leading-relaxed">
+                👉 Submitting will open WhatsApp with your details prefilled. Please tap <strong className="text-gray-800">"Send"</strong> in WhatsApp to deliver your inquiry to our team.
               </p>
             </form>
           </div>

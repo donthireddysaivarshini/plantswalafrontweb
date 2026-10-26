@@ -128,10 +128,10 @@ const WatchAndShopDetail = () => {
   useEffect(() => {
     if (!product?.slug) return;
     const stored: string[] = JSON.parse(
-      localStorage.getItem('rastlinaRecentlyViewed') || '[]'
+      localStorage.getItem('plantswalaRecentlyViewed') || localStorage.getItem('rastlinaRecentlyViewed') || '[]'
     );
     const updated = [product.slug, ...stored.filter(s => s !== product.slug)].slice(0, 6);
-    localStorage.setItem('rastlinaRecentlyViewed', JSON.stringify(updated));
+    localStorage.setItem('plantswalaRecentlyViewed', JSON.stringify(updated));
 
     const toFetch = updated.filter(s => s !== product.slug).slice(0, 4);
     if (!toFetch.length) return;

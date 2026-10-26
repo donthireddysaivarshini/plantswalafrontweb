@@ -1,5 +1,5 @@
 // src/components/profile/ProfileDetails.tsx
-// Account details form — matches Rastlina premium design language.
+// Account details form — matches Plants Wala premium design language.
 
 import { useState, useEffect } from 'react';
 import { User, Mail, Phone, Save } from 'lucide-react';

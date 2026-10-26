@@ -49,7 +49,7 @@ export const Footer = () => {
             <div className="flex items-center gap-3 pt-1">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/plantswala"
+                href="https://www.instagram.com/plantswala8?mdxt=MzYyZ3F0aXR0dzNn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full bg-white/10 hover:bg-terracotta transition-colors"
@@ -109,31 +109,31 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-terracotta shrink-0 mt-0.5" />
                 <span>
-                  4th Floor, Lake View Towers,
+                  46-16-32, Plants wala store,
                   <br />
-                  Safari Nagar, Kondapur,
+                  Opp to spark saloon, Danavaipeta,
                   <br />
-                  Hyderabad, 500084
+                  Rajahmundry, 533103
                 </span>
               </li>
 
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-terracotta shrink-0" />
                 <a
-                  href="tel:+918143814466"
+                  href="tel:+918897021560"
                   className="hover:text-leaf transition-colors"
                 >
-                  +91 8143814466 
+                  +91 8897021560 
                 </a>
               </li>
 
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-terracotta shrink-0" />
                 <a
-                  href="mailto:support@plantswala.com"
+                  href="mailto:plantswala8@gmail.com"
                   className="hover:text-leaf transition-colors break-all"
                 >
-                  support@plantswala.com
+                  plantswala8@gmail.com
                 </a>
               </li>
             </ul>
@@ -150,11 +150,11 @@ export const Footer = () => {
 
               <div>
                 <p className="font-medium text-white/90">
-                  Monday – Saturday
+                  Monday – Sunday
                 </p>
 
                 <p className="text-white/60 mt-1">
-                  10:00 AM – 7:00 PM
+                  6:00 AM – 10:00 PM
                 </p>
               </div>
             </div>

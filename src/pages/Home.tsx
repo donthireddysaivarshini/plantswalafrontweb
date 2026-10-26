@@ -7,7 +7,7 @@ import BestSellers from '@/components/home/BestSellers';
 import NewArrivals from '@/components/home/NewArrivals';
 import WatchAndShopSection from '@/components/home/WatchAndShopSection';
 import OffersSection from '@/components/home/OffersSection';
-import SelfWateringSection from '@/components/home/SelfWateringSection';
+import ServicesSection from '@/components/home/ServicesSection';
 import GardenEssentials from '@/components/home/GardenEssentials';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import CombosSection from '@/components/home/CombosSection';
@@ -28,7 +28,7 @@ const Home = () => {
       <WatchAndShopSection />
       <NewArrivals />
      
-      <SelfWateringSection />
+      <ServicesSection />
       <GardenEssentials />
       <WhyChooseUs />
       <OffersSection />

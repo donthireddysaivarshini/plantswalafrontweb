@@ -1,5 +1,5 @@
 // src/pages/CheckoutPage.tsx
-// Rastlina — Production checkout page.
+// Plants Wala — Production checkout page.
 // Supports: guest checkout, authenticated checkout, Razorpay,
 //           AddressManager integration, coupon codes, exchange codes,
 //           guest login encouragement banner, post-order account prompt.

@@ -1,5 +1,5 @@
 // src/services/api.ts
-// Rastlina — complete API service
+// Plants Wala — complete API service
 
 import axios from 'axios';
 
@@ -24,7 +24,10 @@ export interface ContactPayload {
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api',
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true',
+  },
 });
 
 api.interceptors.request.use((config) => {

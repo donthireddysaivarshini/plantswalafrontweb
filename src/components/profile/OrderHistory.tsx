@@ -1,5 +1,5 @@
 // src/components/profile/OrderHistory.tsx
-// Rastlina — full-featured order history component.
+// Plants Wala — full-featured order history component.
 // Changes vs previous version:
 //   • Exchange request: single button, no "Upgrade" option, fixed API payload
 //   • Return request: new button using submitOrderReturnRequest
@@ -48,6 +48,13 @@ const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-IN', {
     day: 'numeric', month: 'short', year: 'numeric',
   });
+
+const resolveImg = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
+  const baseUrl = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api').replace(/\/api\/?$/, '');
+  return `${baseUrl}${url.startsWith('/') ? '' : '/'}${url}`;
+};
 
 // ─── Exchange Request Modal ───────────────────────────────────────────────────
 
@@ -363,21 +370,49 @@ function OrderCard({ order, expanded, onToggle, onCancelled, onRequestSuccess }:
         {/* Collapsed row */}
         <div onClick={onToggle} className="p-5 cursor-pointer hover:bg-[#FAFAF8] transition-colors">
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-[#F8F7F4] border border-gray-100">
-              {firstItem?.image_url ? (
-                <img src={firstItem.image_url} alt={firstItem.product_name} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Package className="h-6 w-6 text-gray-200" />
-                </div>
-              )}
-            </div>
+            {firstItem?.product_slug ? (
+              <Link
+                to={`/product/${firstItem.product_slug}`}
+                onClick={(e) => e.stopPropagation()}
+                className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-[#F8F7F4] border border-gray-100 hover:opacity-85 transition-opacity block"
+                title={`View ${firstItem.product_name}`}
+              >
+                {firstItem?.image_url ? (
+                  <img src={resolveImg(firstItem.image_url)} alt={firstItem.product_name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Package className="h-6 w-6 text-gray-200" />
+                  </div>
+                )}
+              </Link>
+            ) : (
+              <div className="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-[#F8F7F4] border border-gray-100">
+                {firstItem?.image_url ? (
+                  <img src={resolveImg(firstItem.image_url)} alt={firstItem.product_name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Package className="h-6 w-6 text-gray-200" />
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2 flex-wrap">
                 <div className="min-w-0">
                   <p className="font-semibold text-gray-900 text-sm line-clamp-1">
-                    {firstItem?.product_name || `Order #${order.id}`}
+                    {firstItem?.product_slug ? (
+                      <Link
+                        to={`/product/${firstItem.product_slug}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="hover:text-[#667D00] transition-colors"
+                        title={`View ${firstItem.product_name}`}
+                      >
+                        {firstItem.product_name}
+                      </Link>
+                    ) : (
+                      firstItem?.product_name || `Order #${order.id}`
+                    )}
                     {order.items?.length > 1 && (
                       <span className="text-gray-400 font-normal"> +{order.items.length - 1} more</span>
                     )}
@@ -447,16 +482,29 @@ function OrderCard({ order, expanded, onToggle, onCancelled, onRequestSuccess }:
                   <div className="space-y-3">
                     {order.items?.map((item: any) => (
                       <div key={item.id} className="flex items-center gap-3 bg-[#F8F7F4] rounded-xl p-3">
-                        <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-gray-100 flex-shrink-0">
-                          {item.image_url
-                            ? <img src={item.image_url} alt={item.product_name} className="w-full h-full object-cover" />
-                            : <div className="w-full h-full flex items-center justify-center"><Package className="h-5 w-5 text-gray-200" /></div>
-                          }
-                        </div>
+                        {item.product_slug ? (
+                          <Link
+                            to={`/product/${item.product_slug}`}
+                            className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-gray-100 flex-shrink-0 hover:opacity-85 transition-opacity block"
+                            title={`View ${item.product_name}`}
+                          >
+                            {item.image_url
+                              ? <img src={resolveImg(item.image_url)} alt={item.product_name} className="w-full h-full object-cover" />
+                              : <div className="w-full h-full flex items-center justify-center"><Package className="h-5 w-5 text-gray-200" /></div>
+                            }
+                          </Link>
+                        ) : (
+                          <div className="w-14 h-14 rounded-xl overflow-hidden bg-white border border-gray-100 flex-shrink-0">
+                            {item.image_url
+                              ? <img src={resolveImg(item.image_url)} alt={item.product_name} className="w-full h-full object-cover" />
+                              : <div className="w-full h-full flex items-center justify-center"><Package className="h-5 w-5 text-gray-200" /></div>
+                            }
+                          </div>
+                        )}
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-semibold text-gray-900 line-clamp-1">
                             {item.product_slug ? (
-                              <Link to={`/product/${item.product_slug}`} className="hover:text-[#667D00] transition-colors">
+                              <Link to={`/product/${item.product_slug}`} className="hover:text-[#667D00] transition-colors" title={`View ${item.product_name}`}>
                                 {item.product_name}
                               </Link>
                             ) : item.product_name}

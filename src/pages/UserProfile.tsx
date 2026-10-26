@@ -1,5 +1,5 @@
 // src/pages/UserProfile.tsx
-// Complete user profile page for Rastlina.
+// Complete user profile page for Plants Wala.
 // Tabs: My Orders | Addresses | Account Details
 // Order history uses the full-featured OrderHistory component.
 // Preserves existing sidebar design from the uploaded UserProfile.tsx.

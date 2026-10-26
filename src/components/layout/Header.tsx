@@ -415,7 +415,7 @@ const extraNavItems = [
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-              <img src="/logo.png" alt="Plants Wala" className="h-10 w-auto object-contain"
+              <img src="/logo.png" alt="Plants Wala" className="h-12 w-auto object-contain transition-transform hover:scale-105"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
             <div className="flex items-center gap-1">
@@ -434,9 +434,9 @@ const extraNavItems = [
           </div>
 
           {/* ── DESKTOP ── */}
-          <div className="hidden lg:flex items-center h-[72px] gap-6">
-            <Link to="/" className="flex-shrink-0">
-              <img src="/logo.png" alt="Plants Wala" className="h-14 w-auto object-contain"
+          <div className="hidden lg:flex items-center h-[76px] gap-6">
+            <Link to="/" className="flex-shrink-0 py-1">
+              <img src="/logo.png" alt="Plants Wala" className="h-16 w-auto object-contain transition-transform hover:scale-105"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
 
