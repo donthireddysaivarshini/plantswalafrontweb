@@ -140,7 +140,7 @@ const PlantsMegaMenu = ({
     <>
       <div
   className={`fixed inset-0 z-40 bg-transparent transition-all duration-300 ${
-    isScrolled ? 'top-[72px]' : 'top-[110px]'
+    isScrolled ? 'top-[96px]' : 'top-[134px]'
   }`}
   onClick={closeMenu}
 />
@@ -151,7 +151,7 @@ const PlantsMegaMenu = ({
   exit={{ opacity: 0, y: -10 }}
   transition={{ duration: 0.2 }}
   className={`fixed left-0 w-full z-50 pointer-events-none transition-all duration-300 ${
-    isScrolled ? 'top-[72px]' : 'top-[110px]'
+    isScrolled ? 'top-[96px]' : 'top-[134px]'
   }`}
 >
   <div className="container mx-auto px-4 pointer-events-auto">
@@ -271,7 +271,7 @@ const SimpleDropdown = ({ categories, mainSlug, closeMenu }: {
   categories: NavCategory[]; mainSlug: string; closeMenu: () => void;
 }) => (
   <>
-    <div className="fixed inset-0 top-[120px] z-40" onClick={closeMenu} />
+    <div className="fixed inset-0 top-[134px] z-40" onClick={closeMenu} />
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
@@ -410,12 +410,12 @@ const extraNavItems = [
           <div className="container mx-auto px-4 max-w-7xl">
 
           {/* ── MOBILE ── */}
-          <div className="lg:hidden h-[70px] flex items-center justify-between">
+          <div className="lg:hidden h-[84px] flex items-center justify-between">
             <button className="p-2 -ml-2 text-forest" onClick={() => { setMobileOpen(!mobileOpen); setMobileSearchOpen(false); }}>
               {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2">
-              <img src="/logo.png" alt="Plants Wala" className="h-12 w-auto object-contain transition-transform hover:scale-105"
+              <img src="/logo.png" alt="Plants Wala" className="h-[68px] w-auto max-w-[200px] object-contain transition-transform hover:scale-105"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
             <div className="flex items-center gap-1">
@@ -434,9 +434,9 @@ const extraNavItems = [
           </div>
 
           {/* ── DESKTOP ── */}
-          <div className="hidden lg:flex items-center h-[76px] gap-6">
+          <div className="hidden lg:flex items-center h-[96px] gap-6">
             <Link to="/" className="flex-shrink-0 py-1">
-              <img src="/logo.png" alt="Plants Wala" className="h-16 w-auto object-contain transition-transform hover:scale-105"
+              <img src="/logo.png" alt="Plants Wala" className="h-[84px] w-auto max-w-[260px] object-contain transition-transform hover:scale-105"
                 onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             </Link>
 

@@ -176,7 +176,7 @@ const getTitle = () => {
     arr.includes(val) ? arr.filter(x => x !== val) : [...arr, val];
 
   return (
-    <div className="min-h-screen bg-[#FAFAF7] pt-[110px]" style={{ fontFamily: "'Lora', Georgia, serif" }}>
+    <div className="min-h-screen bg-[#FAFAF7] pt-[122px] lg:pt-[134px]" style={{ fontFamily: "'Lora', Georgia, serif" }}>
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6">
 
         {/* Breadcrumb */}
