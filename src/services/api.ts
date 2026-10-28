@@ -202,8 +202,8 @@ export const orderService = {
   cancelOrder: async (orderId: number) =>
     (await api.post(`/orders/${orderId}/cancel/`)).data,
 
-  validateExchangeCode: async (code: string) =>
-    (await api.post('/orders/validate-exchange-code/', { code })).data,
+  validateExchangeCode: async (code: string, subtotal?: number) =>
+    (await api.post('/orders/validate-exchange-code/', { code, subtotal })).data,
 
   /**
    * Exchange request — customer reports defect.

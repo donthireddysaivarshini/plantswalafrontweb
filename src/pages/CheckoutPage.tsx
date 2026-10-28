@@ -123,6 +123,7 @@ export default function CheckoutPage() {
     code: string; originalOrderValue: number;
   } | null>(null);
   const [exchangeLoading, setExchangeLoading] = useState(false);
+  const [exchangeError, setExchangeError] = useState<string | null>(null);
 
   // ── Order state ────────────────────────────────────────────────────────────
   const [acceptedPolicy, setAcceptedPolicy] = useState(false);
@@ -141,13 +142,29 @@ export default function CheckoutPage() {
     if (appliedCoupon?.code) setCouponInput(appliedCoupon.code);
   }, [appliedCoupon?.code]);
 
+  // Auto-remove exchange code if cart subtotal drops below the required minimum
+  useEffect(() => {
+    if (appliedExchange && totals.subtotal < appliedExchange.originalOrderValue) {
+      const minVal = Math.round(appliedExchange.originalOrderValue);
+      const needed = Math.round(appliedExchange.originalOrderValue - totals.subtotal);
+      setAppliedExchange(null);
+      toast.error(
+        `Exchange code removed: cart total fell below the required ₹${minVal}. Add items worth ₹${needed} more to reapply.`
+      );
+    }
+  }, [totals.subtotal, appliedExchange]);
+
   // ── Price calculations ─────────────────────────────────────────────────────
   const checkoutCalc = useMemo(() => {
     const subtotal = totals.subtotal;
-    const couponDiscount = appliedCoupon?.discount ?? 0;
-    const exchangeDiscount = appliedExchange
-      ? Math.min(appliedExchange.originalOrderValue, subtotal)
-      : 0;
+    // Mutually exclusive: no coupon discount if exchange is applied
+    const couponDiscount = appliedExchange ? 0 : (appliedCoupon?.discount ?? 0);
+    // Strict Model A: exchange credit only applies if subtotal >= originalOrderValue
+    const exchangeDiscount =
+      appliedExchange && subtotal >= appliedExchange.originalOrderValue
+        ? appliedExchange.originalOrderValue
+
+        : 0;
 
     const afterDiscounts = Math.max(0, subtotal - couponDiscount - exchangeDiscount);
 
@@ -159,7 +176,7 @@ export default function CheckoutPage() {
     const tax =
       siteConfig.tax_percentage > 0
         ? Math.round((afterDiscounts * siteConfig.tax_percentage) / 100)
-        : 0;
+          : 0;
 
     const total = afterDiscounts + shipping + tax;
 
@@ -168,6 +185,10 @@ export default function CheckoutPage() {
 
   // ── Coupon handlers ────────────────────────────────────────────────────────
   const handleApplyCoupon = async () => {
+    if (appliedExchange) {
+      toast.error('Promotional coupons cannot be combined with an exchange code. Remove the exchange code first.');
+      return;
+    }
     if (appliedCoupon) {
       removeCoupon();
       setCouponInput('');
@@ -200,19 +221,43 @@ applyCoupon({
     if (appliedExchange) {
       setAppliedExchange(null);
       setExchangeInput('');
+      setExchangeError(null);
       return;
     }
     if (!exchangeInput.trim()) return;
     setExchangeLoading(true);
+    setExchangeError(null);
     try {
-      const res = await orderService.validateExchangeCode(exchangeInput.trim().toUpperCase());
+      const res = await orderService.validateExchangeCode(
+        exchangeInput.trim().toUpperCase(),
+        totals.subtotal,
+      );
+
+      // Model A: Strict Equal or Higher check
+      if (totals.subtotal < res.original_order_value) {
+        const minVal = Math.round(res.original_order_value);
+        const needed = Math.round(res.original_order_value - totals.subtotal);
+        const errMsg = `This exchange code requires a minimum order value of ₹${minVal}. Please add items worth ₹${needed} more to apply.`;
+        setExchangeError(errMsg);
+        toast.error(errMsg);
+        return;
+      }
+
+      // Mutual exclusivity: prevent stacking promo coupon with exchange code
+      if (appliedCoupon) {
+        removeCoupon();
+        setCouponInput('');
+        toast.info('Coupon removed — exchange codes cannot be combined with promotional discounts.');
+      }
       setAppliedExchange({
         code: res.code,
         originalOrderValue: res.original_order_value,
       });
       toast.success(res.message || 'Exchange code applied!');
     } catch (err: any) {
-      toast.error(err?.error || 'Invalid or expired exchange code');
+      const errMsg = err?.error || err?.message || 'Invalid or expired exchange code';
+      setExchangeError(errMsg);
+      toast.error(errMsg);
     } finally {
       setExchangeLoading(false);
     }
@@ -272,7 +317,7 @@ applyCoupon({
         quantity: item.quantity,
       })),
       payment_method: 'Online',
-      coupon_code: appliedCoupon?.code ?? '',
+      coupon_code: appliedExchange ? '' : (appliedCoupon?.code ?? ''),
       exchange_code: appliedExchange?.code ?? '',
       accepted_return_policy: acceptedPolicy,
       // Address fields
@@ -694,7 +739,14 @@ applyCoupon({
                 <label className="block text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">
                   Coupon Code
                 </label>
-                {appliedCoupon ? (
+                {appliedExchange ? (
+                  <div className="flex items-center gap-2 p-3 bg-gray-50 border border-gray-200 rounded-xl">
+                    <Info className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                    <span className="text-xs text-gray-500">
+                      Promotional coupons cannot be combined with an exchange code.
+                    </span>
+                  </div>
+                ) : appliedCoupon ? (
                   <div className="flex items-center justify-between p-3 bg-[#F0F4E8] border border-[#667D00]/30 rounded-xl">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="h-4 w-4 text-[#667D00]" />
@@ -739,35 +791,46 @@ applyCoupon({
                     <div className="flex items-center gap-2">
                       <Gift className="h-4 w-4 text-amber-600" />
                       <div>
-                        <p className="text-sm font-bold text-amber-700">{appliedExchange.code}</p>
-                        <p className="text-[10px] text-amber-600">
-                          Discount: {fmt(Math.min(appliedExchange.originalOrderValue, totals.subtotal))}
+                        <p className="text-sm font-bold text-amber-800">{appliedExchange.code}</p>
+                        <p className="text-[11px] font-semibold text-amber-700">
+                          Exchange Credit: {fmt(appliedExchange.originalOrderValue)}
                         </p>
                       </div>
                     </div>
                     <button
-                      onClick={() => { setAppliedExchange(null); setExchangeInput(''); }}
+                      onClick={() => { setAppliedExchange(null); setExchangeInput(''); setExchangeError(null); }}
                       className="text-gray-400 hover:text-red-500 transition-colors"
                     >
                       <X className="h-4 w-4" />
                     </button>
                   </div>
                 ) : (
-                  <div className="flex gap-2">
-                    <input
-                      value={exchangeInput}
-                      onChange={e => setExchangeInput(e.target.value.toUpperCase())}
-                      onKeyDown={e => e.key === 'Enter' && handleApplyExchange()}
-                      placeholder="YC-XXXXXXXX"
-                      className="flex-1 border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-mono uppercase focus:ring-2 focus:ring-[#1A3831] focus:border-transparent outline-none transition-all"
-                    />
-                    <button
-                      onClick={handleApplyExchange}
-                      disabled={exchangeLoading || !exchangeInput.trim()}
-                      className="px-4 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-xl hover:bg-amber-700 disabled:opacity-50 transition-colors flex items-center gap-1.5"
-                    >
-                      {exchangeLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Gift className="h-4 w-4" />}
-                    </button>
+                  <div className="space-y-2">
+                    <div className="flex gap-2">
+                      <input
+                        value={exchangeInput}
+                        onChange={e => {
+                          setExchangeInput(e.target.value.toUpperCase());
+                          if (exchangeError) setExchangeError(null);
+                        }}
+                        onKeyDown={e => e.key === 'Enter' && handleApplyExchange()}
+                        placeholder="RST-XXXXXXXX"
+                        className="flex-1 border border-gray-200 rounded-xl px-3 py-2.5 text-sm font-mono uppercase focus:ring-2 focus:ring-[#1A3831] focus:border-transparent outline-none transition-all"
+                      />
+                      <button
+                        onClick={handleApplyExchange}
+                        disabled={exchangeLoading || !exchangeInput.trim()}
+                        className="px-4 py-2.5 bg-amber-600 text-white text-sm font-bold rounded-xl hover:bg-amber-700 disabled:opacity-50 transition-colors flex items-center gap-1.5"
+                      >
+                        {exchangeLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Gift className="h-4 w-4" />}
+                      </button>
+                    </div>
+                    {exchangeError && (
+                      <div className="flex items-start gap-1.5 text-xs text-red-600 bg-red-50 p-2.5 rounded-xl border border-red-100">
+                        <Info className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
+                        <span>{exchangeError}</span>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -779,7 +842,7 @@ applyCoupon({
                   <span className="font-medium">{fmt(checkoutCalc.subtotal)}</span>
                 </div>
 
-                {checkoutCalc.couponDiscount > 0 && appliedCoupon && (
+                {checkoutCalc.couponDiscount > 0 && appliedCoupon && !appliedExchange && (
                   <div className="flex justify-between text-sm text-[#667D00]">
                     <span className="flex items-center gap-1">
                       <Tag className="h-3 w-3" /> {appliedCoupon.code}
