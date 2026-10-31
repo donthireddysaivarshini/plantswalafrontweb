@@ -1,5 +1,9 @@
+import { useCart } from "@/contexts/CartContext";
+
 const WhatsAppButton = () => {
-  const phoneNumber = "918897021560"; 
+  const { siteConfig } = useCart();
+  const rawNumber = siteConfig?.whatsapp_number || "918897021560";
+  const phoneNumber = rawNumber.replace(/\D/g, "") || "918897021560";
   const message = "Hi Plants Wala! I'm interested in your plants.";
   
   return (
@@ -7,7 +11,6 @@ const WhatsAppButton = () => {
       href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noopener noreferrer"
-      // Replaced bg-[#556B2F] and hover:bg-[#3d4d21] with bg-primary and hover:bg-primary/90
       className="fixed bottom-6 right-6 z-50 bg-primary hover:bg-primary/90 text-white p-3.5 rounded-full shadow-lg transition-transform hover:scale-110 flex items-center justify-center"
       aria-label="Chat on WhatsApp"
     >

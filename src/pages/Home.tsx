@@ -15,7 +15,6 @@ import Testimonials from '@/components/home/Testimonials';
 
 import Blogs from '@/components/home/Blogs';
 import GrowingSimple from '@/components/home/GrowingSimple';
-import WhatsAppButton from '@/components/home/WhatsAppButton';
 
 const Home = () => {
   return (
@@ -37,7 +36,6 @@ const Home = () => {
      
       <Blogs />
       <GrowingSimple />
-      <WhatsAppButton />
     </main>
   );
 };

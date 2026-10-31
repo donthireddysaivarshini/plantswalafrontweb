@@ -48,6 +48,7 @@ interface SiteConfig {
   free_shipping_threshold: number;
   shipping_fee: number;
   tax_percentage: number;
+  whatsapp_number?: string;
 }
 
 interface CartContextType {
@@ -96,6 +97,7 @@ const DEFAULT_CONFIG: SiteConfig = {
   free_shipping_threshold: 999,
   shipping_fee: 0,
   tax_percentage: 0,
+  whatsapp_number: '918897021560',
 };
 
 const CART_KEY = 'plantswala_cart_v2';
@@ -147,6 +149,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
           free_shipping_threshold: Number(cfg.free_shipping_threshold ?? 999),
           shipping_fee: Number(cfg.shipping_fee ?? 0),
           tax_percentage: Number(cfg.tax_percentage ?? 0),
+          whatsapp_number: cfg.whatsapp_number ? String(cfg.whatsapp_number).replace(/\D/g, '') : '918897021560',
         });
       }
     }).catch(() => {});
