@@ -35,7 +35,7 @@ export default function Contact() {
 
     setLoading(true);
 
-    const whatsappNumber = "918143814466";
+    const whatsappNumber = "918897021560";
 
     const lines = [
       "🌿 *New Inquiry — Plants Wala*",

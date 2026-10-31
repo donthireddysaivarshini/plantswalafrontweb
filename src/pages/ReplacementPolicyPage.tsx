@@ -240,7 +240,7 @@ const ReplacementPolicyPage = () => {
             </p>
 
             <p>
-              <strong>Phone:</strong> +91 8143814466
+              <strong>Phone:</strong> +91 8897021560
             </p>
 
             <p>

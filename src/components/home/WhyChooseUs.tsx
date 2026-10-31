@@ -124,7 +124,7 @@ const WhyChooseUs = () => {
               </Link>
 
               <a
-                href="https://wa.me/918143814466?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20know%20more%20about%20your%20plants%20and%20gardening%20services."
+                href="https://wa.me/918897021560?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20know%20more%20about%20your%20plants%20and%20gardening%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-300 text-gray-800 text-sm font-bold hover:border-[#1A3831] hover:text-[#1A3831] transition-colors"

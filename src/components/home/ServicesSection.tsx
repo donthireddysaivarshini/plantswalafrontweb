@@ -40,7 +40,7 @@ const services = [
     icon: Scissors,
     description: 'Balcony garden setup, periodic landscape maintenance, repotting, organic fertilizing, and pruning by skilled horticulturalists.',
     actionLabel: 'Book Gardening',
-    actionHref: 'https://wa.me/918143814466?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20book%20your%20Gardening%20%26%20Balcony%20Maintenance%20Services.',
+    actionHref: 'https://wa.me/918897021560?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20book%20your%20Gardening%20%26%20Balcony%20Maintenance%20Services.',
     isExternal: true,
     color: 'from-green-500/10 to-green-500/5',
     accentBorder: 'group-hover:border-[#1A3831]',
@@ -54,7 +54,7 @@ const services = [
     icon: HeartHandshake,
     description: 'Bespoke hand-tied floral bouquets, festive flower arrangements, and thoughtful green gifts crafted fresh for every celebration.',
     actionLabel: 'Order Bouquet',
-    actionHref: 'https://wa.me/918143814466?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20order%20a%20Fresh%20Flower%20Bouquet%20for%20an%20occasion.',
+    actionHref: 'https://wa.me/918897021560?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20order%20a%20Fresh%20Flower%20Bouquet%20for%20an%20occasion.',
     isExternal: true,
     color: 'from-rose-500/10 to-rose-500/5',
     accentBorder: 'group-hover:border-rose-600',
@@ -68,7 +68,7 @@ const services = [
     icon: Building2,
     description: 'Turnkey plant rentals for offices, luxury weddings, showrooms, and events with complete scheduled care and free plant replacements.',
     actionLabel: 'Enquire Rentals',
-    actionHref: 'https://wa.me/918143814466?text=Hi%20Plants%20Wala%2C%20I%20am%20interested%20in%20Plant%20Rental%20services%20for%20our%20office%20%2F%20event.',
+    actionHref: 'https://wa.me/918897021560?text=Hi%20Plants%20Wala%2C%20I%20am%20interested%20in%20Plant%20Rental%20services%20for%20our%20office%20%2F%20event.',
     isExternal: true,
     color: 'from-teal-500/10 to-teal-500/5',
     accentBorder: 'group-hover:border-teal-700',
@@ -196,7 +196,7 @@ const ServicesSection = () => {
               Call 8897021560
             </a>
             <a
-              href="https://wa.me/918143814466?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+              href="https://wa.me/918897021560?text=Hi%20Plants%20Wala%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 md:flex-initial text-center px-5 py-2.5 rounded-full bg-[#1A3831] text-white text-xs md:text-sm font-bold hover:bg-[#122722] transition-colors shadow-sm inline-flex items-center justify-center gap-2"

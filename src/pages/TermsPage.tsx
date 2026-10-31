@@ -278,7 +278,7 @@ const TermsPage = () => {
                 </p>
 
                 <p>
-                  <strong>Call:</strong> +91 8143814466
+                  <strong>Call:</strong> +91 8897021560
                 </p>
               </div>
             </div>
